@@ -141,7 +141,7 @@
     \def\gt{>}
     \def\lt{<}
     % Document parameters
-    \title{data-science\_R\_summary}
+    \title{data-science\_python\_summary}
     
     
     
@@ -285,120 +285,71 @@
 \subsection{simple data analysis, wrangling, and
 plotting}\label{simple-data-analysis-wrangling-and-plotting}
 
-Below is R summary More details may be found at ... python equivalent in
-data-science\_R\_summary notebook in same folder
+Below is python summary (available at
+https://github.com/berndtlindner/R\_and\_python/blob/master/data-science/data-science\_python\_summary.ipynb)
+For those interrested, more elaborate explanation is available at may be
+found at
+https://github.com/berndtlindner/R\_and\_python/blob/master/data-science/data-science\_python\_detail.ipynb
+
+R equivalent code in data-science\_R\_summary notebook in same folder
 
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}5}]:} gapminder\PYZus{}data \PY{o}{\PYZlt{}\PYZhy{}} read.csv\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{https://raw.githubusercontent.com/berndtlindner/R\PYZus{}and\PYZus{}python/master/data/gapminder\PYZus{}lifeExp\PYZus{}gdp.csv\PYZdq{}}\PY{p}{)}
-        \PY{k+kp}{head}\PY{p}{(}gapminder\PYZus{}data\PY{p}{)}
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{n}{gapminder\PYZus{}data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{https://raw.githubusercontent.com/berndtlindner/R\PYZus{}and\PYZus{}python/master/data/gapminder\PYZus{}lifeExp\PYZus{}gdp.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{gapminder\PYZus{}data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
-    \begin{tabular}{r|lllllll}
- X & country & continent & year & lifeExp & pop & gdpPercap\\
-\hline
-	 1           & Afghanistan & Asia        & 1952        & 28.801      &  8425333    & 779.4453   \\
-	 2           & Afghanistan & Asia        & 1957        & 30.332      &  9240934    & 820.8530   \\
-	 3           & Afghanistan & Asia        & 1962        & 31.997      & 10267083    & 853.1007   \\
-	 4           & Afghanistan & Asia        & 1967        & 34.020      & 11537966    & 836.1971   \\
-	 5           & Afghanistan & Asia        & 1972        & 36.088      & 13079460    & 739.9811   \\
-	 6           & Afghanistan & Asia        & 1977        & 38.438      & 14880372    & 786.1134   \\
-\end{tabular}
-
-
-    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:}    Unnamed: 0      country continent  year  lifeExp       pop   gdpPercap
+        0           1  Afghanistan      Asia  1952   28.801   8425333  779.445314
+        1           2  Afghanistan      Asia  1957   30.332   9240934  820.853030
+        2           3  Afghanistan      Asia  1962   31.997  10267083  853.100710
+        3           4  Afghanistan      Asia  1967   34.020  11537966  836.197138
+        4           5  Afghanistan      Asia  1972   36.088  13079460  739.981106
+\end{Verbatim}
+            
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}6}]:} continent\PYZus{}color \PY{o}{\PYZlt{}\PYZhy{}} \PY{k+kt}{data.frame}\PY{p}{(}continent\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Asia\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Europe\PYZdq{}}\PY{p}{,}\PY{l+s}{\PYZdq{}}\PY{l+s}{Africa\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Americas\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Oceania\PYZdq{}}\PY{p}{)}\PY{p}{,}
-                                       color\PY{o}{=}\PY{k+kt}{c}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{red\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{blue\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{green\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{purple\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{pink\PYZdq{}}\PY{p}{)}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{continent\PYZus{}color} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{continent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Asia}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Europe}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Africa}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Americas}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Oceania}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
+                                         \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{color}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{blue}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{purple}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pink}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{\PYZcb{}}\PY{p}{)}
 \end{Verbatim}
 
 
+    Python/pandas has made attempts to mimic R's pipe
+\texttt{\%\textgreater{}\%} operator but with not much success (see
+http://nbviewer.jupyter.org/gist/TomAugspurger/6e052140eaa5fdb6e8c0\#Chaining)
+So below wrangling is done line by line in python/pandas.
+
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}7}]:} \PY{k+kn}{library}\PY{p}{(}dplyr\PY{p}{)}
-        data \PY{o}{\PYZlt{}\PYZhy{}}  gapminder\PYZus{}data  \PY{o}{\PYZpc{}\PYZgt{}\PYZpc{}} 
-        group\PYZus{}by\PY{p}{(}continent\PY{p}{,} year\PY{p}{)}  \PY{o}{\PYZpc{}\PYZgt{}\PYZpc{}}  
-        summarise\PY{p}{(}lifeExp\PYZus{}mean \PY{o}{=} \PY{k+kp}{mean}\PY{p}{(}lifeExp\PY{p}{)}\PY{p}{)}  \PY{o}{\PYZpc{}\PYZgt{}\PYZpc{}} 
-        left\PYZus{}join\PY{p}{(}continent\PYZus{}color\PY{p}{,} by \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{continent\PYZdq{}}\PY{p}{)}    \PY{c+c1}{\PYZsh{}left join the colors for the continents}
-        data  \PY{o}{\PYZpc{}\PYZgt{}\PYZpc{}} \PY{k+kp}{head}\PY{p}{(}\PY{p}{)}
+{\color{incolor}In [{\color{incolor}32}]:} \PY{n}{data} \PY{o}{=} \PY{n}{gapminder\PYZus{}data}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{continent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{as\PYZus{}index}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{o}{.}\PY{n}{agg}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lifeExp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mean}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{)}
+         \PY{n}{data} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{data}\PY{p}{,} \PY{n}{continent\PYZus{}color}\PY{p}{,} \PY{n}{on} \PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{continent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{}left join the colors for the continents}
+         \PY{n}{data}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
 \end{Verbatim}
 
 
-    \begin{tabular}{r|llll}
- continent & year & lifeExp\_mean & color\\
-\hline
-	 Africa   & 1952     & 39.13550 & green   \\
-	 Africa   & 1957     & 41.26635 & green   \\
-	 Africa   & 1962     & 43.31944 & green   \\
-	 Africa   & 1967     & 45.33454 & green   \\
-	 Africa   & 1972     & 47.45094 & green   \\
-	 Africa   & 1977     & 49.58042 & green   \\
-\end{tabular}
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}32}]:}   continent  year    lifeExp  color
+         0    Africa  1952  39.135500  green
+         1    Africa  1957  41.266346  green
+         2    Africa  1962  43.319442  green
+         3    Africa  1967  45.334538  green
+         4    Africa  1972  47.450942  green
+\end{Verbatim}
+            
+    Python can equivalently be used to do some simple linear regression with
+the \texttt{scipy} package (taken from
+https://warwick.ac.uk/fac/sci/moac/people/students/peter\_cock/python/lin\_reg/)
 
-
-    
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}8}]:} lm\PY{p}{(}data\PY{o}{\PYZdl{}}year \PY{o}{\PYZti{}} data\PY{o}{\PYZdl{}}lifeExp\PYZus{}mean\PY{p}{)} \PY{c+c1}{\PYZsh{}Fitting Linear Models [lm(y \PYZti{} x1+x2+....)]}
+{\color{incolor}In [{\color{incolor}35}]:} \PY{k+kn}{from} \PY{n+nn}{scipy} \PY{k}{import} \PY{n}{stats}
+         \PY{n}{stats}\PY{o}{.}\PY{n}{linregress}\PY{p}{(}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}\PY{n}{data}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lifeExp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
 \end{Verbatim}
 
 
-    
-    \begin{verbatim}
-
-Call:
-lm(formula = data$year ~ data$lifeExp_mean)
-
-Coefficients:
-      (Intercept)  data$lifeExp_mean  
-        1928.1693             0.8025  
-
-    \end{verbatim}
-
-    
-    Let's fit a linear model to expected life expectency (also let's exclude
-"Oceania") We use the broom package, which converts statistical analysis
-objects (for example the lm function or any user defined function) in R
-into tidy format
-
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}11}]:} \PY{k+kn}{library}\PY{p}{(}broom\PY{p}{)}
-         data \PY{o}{\PYZpc{}\PYZgt{}\PYZpc{}} 
-         filter\PY{p}{(}continent\PY{o}{!=}\PY{l+s}{\PYZdq{}}\PY{l+s}{Oceania\PYZdq{}}\PY{p}{)}  \PY{o}{\PYZpc{}\PYZgt{}\PYZpc{}}  \PY{c+c1}{\PYZsh{}not interested in Oceania}
-         do\PY{p}{(}tidy\PY{p}{(}lm\PY{p}{(}lifeExp\PYZus{}mean \PY{o}{\PYZti{}} year\PY{p}{,} \PY{l+m}{.}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}35}]:} LinregressResult(slope=0.3085014252302476, intercept=-546.7147983489472, rvalue=0.4975652773621511, pvalue=5.238463343943105e-05, stderr=0.07061969151680043)
 \end{Verbatim}
-
-
-    \begin{tabular}{r|llllll}
- continent & term & estimate & std.error & statistic & p.value\\
-\hline
-	 Africa       & (Intercept)  & -524.2578461 & 53.64492850  &  -9.772738   & 1.961582e-06\\
-	 Africa       & year         &    0.2895293 &  0.02709921  &  10.684047   & 8.639697e-07\\
-	 Americas     & (Intercept)  & -663.1062932 & 23.87082826  & -27.778939   & 8.478378e-11\\
-	 Americas     & year         &    0.3676509 &  0.01205856  &  30.488791   & 3.375967e-11\\
-	 Asia         & (Intercept)  & -836.8908953 & 36.46443200  & -22.950883   & 5.567594e-10\\
-	 Asia         & year         &    0.4531224 &  0.01842033  &  24.599037   & 2.813781e-10\\
-	 Europe       & (Intercept)  & -367.4109940 & 20.09478025  & -18.283902   & 5.149107e-09\\
-	 Europe       & year         &    0.2219321 &  0.01015106  &  21.862960   & 8.969989e-10\\
-\end{tabular}
-
-
-    
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor}16}]:} \PY{k+kn}{library}\PY{p}{(}ggplot2\PY{p}{)}
-         ggplot\PY{p}{(}data\PY{p}{,} aes\PY{p}{(}x \PY{o}{=} year\PY{p}{,} y \PY{o}{=} lifeExp\PYZus{}mean\PY{p}{,} col\PY{o}{=}continent\PY{p}{)}\PY{p}{)} \PY{o}{+}
-         geom\PYZus{}point\PY{p}{(}\PY{p}{)}  \PY{o}{+}
-         scale\PYZus{}colour\PYZus{}manual\PY{p}{(}values\PY{o}{=}setNames\PY{p}{(}\PY{k+kp}{as.character}\PY{p}{(}continent\PYZus{}color\PY{o}{\PYZdl{}}color\PY{p}{)}\PY{p}{,}\PY{k+kp}{as.character}\PY{p}{(}continent\PYZus{}color\PY{o}{\PYZdl{}}continent\PY{p}{)}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{c+c1}{\PYZsh{}colour}
-         geom\PYZus{}smooth\PY{p}{(}method\PY{o}{=}lm\PY{p}{,} se\PY{o}{=}\PY{k+kc}{FALSE}\PY{p}{,} fullrange\PY{o}{=}\PY{k+kc}{TRUE}\PY{p}{)} \PY{o}{+} \PY{c+c1}{\PYZsh{}linear model}
-         theme\PYZus{}bw\PY{p}{(}\PY{p}{)}
-\end{Verbatim}
-
-
-    
-    
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{data-science_R_summary_files/data-science_R_summary_7_1.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
+            
 
     % Add a bibliography block to the postdoc
     
